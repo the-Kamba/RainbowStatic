@@ -6,10 +6,10 @@ window.addEventListener('load', () => {
         const randomIndexText = Math.floor(Math.random() * colors.length);
         const randomColorText = colors[randomIndexText];
         element.style.color = randomColorText;
-
+        colors.splice(randomIndexText,1);
         const randomIndexBackground = Math.floor(Math.random() * colors.length);
         const randomColorBackground = colors[randomIndexBackground];
-        element.style["background-color"] = randomColorBackground;
+        element.setAttribute('style', 'background-color: ' + randomColorBackground + ';');
     });
 });
 
