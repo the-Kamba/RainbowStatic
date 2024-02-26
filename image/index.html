@@ -46,9 +46,11 @@
                 
                 // Encode the decoded string back to Base64
                 // If the original string was Base64-encoded, the encoding should be the same
-                var encoded = btoa(decoded);
+                var encoded = encodeToBase64url(btoa(decoded));
                 
                 // If the encoded string matches the original input, it's likely Base64-encoded
+                console.log(encoded)
+                console.log(str)
                 return encoded === str;
             } catch (e) {
                 // If an error occurs during decoding, it's not Base64-encoded
@@ -83,6 +85,9 @@
             var format = getUrlParameter('format');
             var data = getUrlParameter('data');
             //img.src = 'path/to/your/image.jpg';
+            if(!data) return;
+            if(!isBase64(data)) return;
+            if(!format) format="png";
             img.src="data:image/"+format+";base64,"+encodeFromBase64url(data);
             // Set styles to make the image cover the entire viewport
             img.style.width = '100%';
@@ -92,6 +97,7 @@
             img.style.left = '0';
             img.style.zIndex = '9999'; // Ensure the image appears on top
             // Replace the entire content of the body with the image
+            document.src=img
             document.body.innerHTML = '';
             document.body.appendChild(img);
         }
