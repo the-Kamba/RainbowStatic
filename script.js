@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
 
         const randomIndexBackground = Math.floor(Math.random() * colors.length);
         const randomColorBackground = colors[randomIndexBackground];
-        element.style.backgroundColor = randomColorBackground;
+        element.style["background-color"] = randomColorBackground;
     });
 });
 
