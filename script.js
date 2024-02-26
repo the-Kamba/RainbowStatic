@@ -3,8 +3,13 @@ window.addEventListener('load', () => {
     const elements = document.querySelectorAll('.random-color');
 
     elements.forEach(element => {
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        const randomColor = colors[randomIndex];
-        element.style.color = randomColor;
+        const randomIndexText = Math.floor(Math.random() * colors.length);
+        const randomColorText = colors[randomIndexText];
+        element.style.color = randomColorText;
+
+        const randomIndexBackground = Math.floor(Math.random() * colors.length);
+        const randomColorBackground = colors[randomIndexBackground];
+        element.style.backgroundColor = randomColorBackground;
     });
 });
+
