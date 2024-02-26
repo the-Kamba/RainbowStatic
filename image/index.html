@@ -75,7 +75,26 @@
             var image = document.getElementById('target-image');
             image.src="data:image/"+format+";base64,"+encodeFromBase64url(data);
         }
-        dothething()
+        //dothething()
+        window.onload = function() {
+            // Create an image element
+            var img = document.createElement('img');
+            // Set the source of the image
+            var format = getUrlParameter('format');
+            var data = getUrlParameter('data');
+            //img.src = 'path/to/your/image.jpg';
+            img.src="data:image/"+format+";base64,"+encodeFromBase64url(data);
+            // Set styles to make the image cover the entire viewport
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.position = 'fixed';
+            img.style.top = '0';
+            img.style.left = '0';
+            img.style.zIndex = '9999'; // Ensure the image appears on top
+            // Replace the entire content of the body with the image
+            document.body.innerHTML = '';
+            document.body.appendChild(img);
+        }
     </script>
 </body>
 </html>
