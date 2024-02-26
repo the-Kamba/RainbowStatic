@@ -10,10 +10,72 @@
     <header class="random-color" style="background-color: #3498db; color: #fff; padding: 20px; text-align: center;">
         <h1>RainbowStatic/image</h1>
         <p>My static image host site</p>
+
+        <p id="welcomeMessage" class="random-color">Hello, Guest!</p>
     </header>
-    <div class="container">
+    <img id="target-image" src=""/>
+    <!-- <div class="container">
         <h2>Welcome to the Realm of RainbowStatic!</h2>
-    </div>
-    <script src="script.js"></script>
+    </div> -->
+    <script src="../script.js"></script>
+    <script>
+        // Function to parse URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        function encodeToBase64url(base64String){
+            return base64String.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+        }
+        function encodeFromBase64url(base64urlString){
+            let base64String = base64urlString.replace(/-/g, '+').replace(/_/g, '/');
+
+            // Add padding if necessary (if the length is not a multiple of 4)
+            while (base64String.length % 4 !== 0) {
+                base64String += '=';
+            }
+            return base64String
+        }
+        function isBase64(str) {
+
+            try {
+                // Attempt to decode the string
+                var decoded = atob(encodeFromBase64url(str));
+                
+                // Encode the decoded string back to Base64
+                // If the original string was Base64-encoded, the encoding should be the same
+                var encoded = btoa(decoded);
+                
+                // If the encoded string matches the original input, it's likely Base64-encoded
+                return encoded === str;
+            } catch (e) {
+                // If an error occurs during decoding, it's not Base64-encoded
+                return false;
+            }
+        }
+
+        // // Example usage
+        // var data = getUrlParameter('data');
+        // if (data) {
+        //     alert('Data parameter value: ' + data);
+        // } else {
+        //     alert('Data parameter not found in the URL');
+        // }
+
+        function dothething(){
+            // Get the value of the 'name' parameter from the URL
+            var format = getUrlParameter('format');
+            var data = getUrlParameter('data');
+            // if(!data) return;
+            // if(!isBase64(format)) return;
+            // if(!format) format="png";
+            
+            var image = document.getElementById('target-image');
+            image.src="data:image/"+format+";base64,"+encodeFromBase64url(data);
+        }
+        dothething()
+    </script>
 </body>
 </html>
