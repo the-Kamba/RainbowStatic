@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Interpreter with Pyodide</title>
+
+<style>
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex; /* Use flexbox layout */
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Distribute items evenly */
+    z-index: 999; /* Ensure it's above other content */
+}
+
+.button-input {
+    width: 70%; /* Adjust width as needed */
+    resize: none; /* Disable textarea resizing */
+    font-family: monospace; /* Use monospace font */
+    margin-right: 10px; /* Add some space between textarea and button */
+}
+
+button {
+    height: 100%; /* Make button as tall as the textarea */
+    background-color: #4CAF50; /* Green background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.input, .output {
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Rounded corners */
+    font-family: monospace; /* Monospace font */
+    padding: 5px; /* Add padding */
+}
+
+.input {
+    color: blue;
+}
+
+.output {
+    color: black;
+}
+
+.error {
+    color: red;
+}
+</style>
+
+<!-- Include Pyodide -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+
+
+</head>
+<body>
+
+<div id="content" style="height:90%;padding-bottom:10%"/>
+
+
+
+<div class="bottom-bar">
+    <button onclick="evaluatePython()">Run</button>
+    <textarea id="inputCode" rows="5" style="width:95%;height:10%" class="button-input input"></textarea>
+</div>
+
+
+<script src="script.js"></script>
+
+
+
+</body>
