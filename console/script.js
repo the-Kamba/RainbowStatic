@@ -49,7 +49,16 @@ function addOutputBox(inputCode, outputText, isError = false) {
 // init Pyodide
 async function main() {
 	let pyodide = await loadPyodide();
+
+
 	addOutputBox("loadPyodide()","Ready!")
+	
+	let response = await fetch("/tclish.tar.gz"); // .zip, .whl, ...
+	let buffer = await response.arrayBuffer();
+	await pyodide.unpackArchive(buffer, "gztar"); // by default, unpacks to the current dir
+	pyodide.pyimport("tclish");
+	addOutputBox("import tclish","ok")
+
 	return pyodide;
 }
 let pyodideReadyPromise = main();
