@@ -53,7 +53,7 @@ async function main() {
 
 	addOutputBox("loadPyodide()","Ready!")
 	
-	let response = await fetch("/tclish.tar"); // .zip, .whl, ...
+	let response = await fetch("/RainbowStatic/console/tclish.tar"); // .zip, .whl, ...
 	let buffer = await response.arrayBuffer();
 	await pyodide.unpackArchive(buffer, "tar"); // by default, unpacks to the current dir
 	pyodide.pyimport("tclish");
