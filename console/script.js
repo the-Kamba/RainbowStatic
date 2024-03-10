@@ -53,9 +53,9 @@ async function main() {
 
 	addOutputBox("loadPyodide()","Ready!")
 	
-	let response = await fetch("/tclish.tar.gz"); // .zip, .whl, ...
+	let response = await fetch("/tclish.zip"); // .zip, .whl, ...
 	let buffer = await response.arrayBuffer();
-	await pyodide.unpackArchive(buffer, "gztar"); // by default, unpacks to the current dir
+	await pyodide.unpackArchive(buffer, "zip"); // by default, unpacks to the current dir
 	pyodide.pyimport("tclish");
 	addOutputBox("import tclish","ok")
 
