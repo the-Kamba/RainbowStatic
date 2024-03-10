@@ -12,6 +12,10 @@ async function evaluatePython() {
 
 	try {
 		let output = await pyodide.runPythonAsync(code.value);
+        if (output instanceof Promise) {
+            // Await the Promise
+            output = await output;
+        }
 		addOutputBox(code.value, output);
 	} catch (err) {
 		addOutputBox(code.value, err, true); // Display error in red
